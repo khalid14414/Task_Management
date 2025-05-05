@@ -1,0 +1,127 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--white);
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 5px var(--shadow);
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    font-weight: bold;
+  }
+  
+  .user-profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  
+  .logout-btn {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .dashboard .main-content {
+    padding: 2rem;
+    max-width: 900px;
+    margin: auto;
+  }
+  
+  .task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .add-task-btn {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+  
+  .add-task-btn:hover {
+    background-color: var(--primary-hover);
+  }
+  
+  .task-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .task-card {
+    background-color: var(--white);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 6px var(--shadow);
+    border-radius: 8px;
+  }
+  
+  .task-actions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .edit-btn,
+  .delete-btn {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .edit-btn:hover,
+  .delete-btn:hover {
+    background-color: var(--primary-hover);
+  }
+  
+  .status {
+    font-weight: bold;
+  }
+  
+  .status.pending {
+    color: #d69e2e;
+  }
+  
+  .status.progress {
+    color: #3182ce;
+  }
+  
+  .status.completed {
+    color: #38a169;
+  }
+  
+  .no-tasks {
+    text-align: center;
+    color: var(--footer-text);
+    font-style: italic;
+  }
+
+  

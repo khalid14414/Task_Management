@@ -22,7 +22,6 @@ export const registerUser = async (req, res, next) => {
         });
         console.log(newUser)
         res.redirect('/login')
-        // res.status(201).json({ message: 'User registered successfully', userId: newUser.id });
     } catch (error) {
         next(error);
     }
@@ -30,6 +29,7 @@ export const registerUser = async (req, res, next) => {
 
 
 export const loginUser = async (req, res, next) => {
+    console.log(req.body)
     try {
         const {error,value} = loginSchema.validate(req.body)
         if (error) {
@@ -43,15 +43,12 @@ export const loginUser = async (req, res, next) => {
         if (!isPasswordValid) {
             return res.status(400).json({ message: 'Invalid email or password' });
         }
-        req.session.user = user._id;
-        req.session.userName = user.userName;
-        req.session.email = user.email;
-        req.session.save((err) => {
+        req.login(user, (err) => {
             if (err) {
                 console.error(err);
                 return res.status(500).json({ message: 'Internal server error' });
             }
-            res.redirect('/');
+            return res.redirect('/dashboard');
         });
 
     } catch (error) {

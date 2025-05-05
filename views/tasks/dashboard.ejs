@@ -7,9 +7,9 @@
     <nav class="navbar">
       <div class="logo">Task Manager</div>
       <div class="user-profile">
-        <img src="<%= user.avatar %>" alt="Profile Avatar" class="avatar">
+        <img src="<%= user.avatar %> // img/default.png" alt="Profile Avatar" class="avatar">
         <span><%= user.name %></span>
-        <a href="/logout" class="logout-btn">Logout</a>
+        <a href="/auth/logout" class="logout-btn">Logout</a>
       </div>
     </nav>
   
@@ -17,7 +17,7 @@
     <main class="main-content">
       <div class="task-header">
         <h2>Your Tasks</h2>
-        <a href="/tasks/new" class="add-task-btn">+ New Task</a>
+        <a href="/addTask" class="add-task-btn">+ New Task</a>
       </div>
   
       <% if (tasks.length === 0) { %>

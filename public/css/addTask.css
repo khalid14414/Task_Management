@@ -1,0 +1,72 @@
+.dashboard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background-color: var(--background-color);
+    padding: 2rem;
+
+  }
+  
+  /* .task-form {
+    background-color: var(--white);
+    padding: 2rem 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px var(--shadow);
+    max-width: 800px;
+    width: 100%;
+  } */
+
+  .task-form {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px var(--shadow);
+    width: 414px;
+    max-width: 100%;
+    margin: 0 auto;
+    height: 474px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .task-form .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .task-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+  }
+  
+  .task-form input,
+  .task-form textarea,
+  .task-form select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--input-border);
+    border-radius: 6px;
+    background: var(--white);
+    color: var(--text-color);
+    font-size: 1rem;
+  }
+  
+  .add-task-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-task-btn:hover {
+    background-color: var(--primary-hover);
+  }
+  
