@@ -1,6 +1,6 @@
 import {Router} from 'express';
 import passport from 'passport';
-import { registerUser } from '../controllers/authController.js';
+import { loginUser, registerUser } from '../controllers/authController.js';
 
 const authRouter = Router()
 
@@ -19,6 +19,7 @@ authRouter.get('/logout',(req,res)=>{
 
 // Local login and register
 authRouter.post('/register', registerUser);
+authRouter.post('/login', loginUser);
 
 
 export default authRouter

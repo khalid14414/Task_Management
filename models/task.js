@@ -15,8 +15,10 @@ const taskSchema = new Schema({
         enum:['Pending','Progress','Completed'],default:'Pending'
     },
     user:{
-        type:Types.ObjectId()
+        type:Types.ObjectId,
+        ref:"User",
+        required:true
     }
 },{timestamps:true})
 
-export const taskModel = model('Task')
+export const taskModel = model('Task',taskSchema)

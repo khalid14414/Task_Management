@@ -1,0 +1,45 @@
+<%-include ('../partials/header')%>
+<link rel="stylesheet" href="/css/dashboard.css">
+</head>
+
+<div class="dashboard">
+    <!-- Top Navbar -->
+    <nav class="navbar">
+      <div class="logo">Task Manager</div>
+      <div class="user-profile">
+        <img src="<%= user.avatar %>" alt="Profile Avatar" class="avatar">
+        <span><%= user.name %></span>
+        <a href="/logout" class="logout-btn">Logout</a>
+      </div>
+    </nav>
+  
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="task-header">
+        <h2>Your Tasks</h2>
+        <a href="/tasks/new" class="add-task-btn">+ New Task</a>
+      </div>
+  
+      <% if (tasks.length === 0) { %>
+        <p class="no-tasks">You have no tasks yet.</p>
+      <% } else { %>
+        <ul class="task-list">
+          <% tasks.forEach(task => { %>
+            <li class="task-card">
+              <h3><%= task.title %></h3>
+              <p><%= task.description %></p>
+              <p>Status: <span class="status <%= task.status.toLowerCase() %>"><%= task.status %></span></p>
+              <div class="task-actions">
+                <a href="/tasks/<%= task._id %>/edit" class="edit-btn">Edit</a>
+                <form action="/tasks/<%= task._id %>?_method=DELETE" method="POST" class="delete-form">
+                  <button type="submit" class="delete-btn">Delete</button>
+                </form>
+              </div>
+            </li>
+          <% }) %>
+        </ul>
+      <% } %>
+    </main>
+  </div>
+  
+  <%- include('../partials/footer') %>

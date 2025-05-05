@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import { userModel } from '../models/user.js';
-import { registerSchema } from '../validator/authValidator.js';
+import { loginSchema, registerSchema } from '../validator/authValidator.js';
 
 
 
@@ -28,3 +28,33 @@ export const registerUser = async (req, res, next) => {
     }
 };
 
+
+export const loginUser = async (req, res, next) => {
+    try {
+        const {error,value} = loginSchema.validate(req.body)
+        if (error) {
+            return res.status(400).json({ message: error.details[0].message })
+        }
+        const user = await userModel.findOne({ email: value.email });
+        if (!user) {
+            return res.status(400).json({ message: 'Invalid email or password' });
+        }
+        const isPasswordValid = await bcrypt.compare(value.password, user.password);
+        if (!isPasswordValid) {
+            return res.status(400).json({ message: 'Invalid email or password' });
+        }
+        req.session.user = user._id;
+        req.session.userName = user.userName;
+        req.session.email = user.email;
+        req.session.save((err) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).json({ message: 'Internal server error' });
+            }
+            res.redirect('/');
+        });
+
+    } catch (error) {
+        
+    }
+}
