@@ -26,16 +26,52 @@ export const getTaskById = async (req,res) =>{
 }
 
 export const createTask = async (req,res)=>{
-    console.log(req.user)
-    const {title,description} = req.body
-    const tasks = await taskModel.create({
-        title,
-        description,
-        user:req.user.id
-    })
-    res.redirect('/dashboard')
+    try {
+        const {title,description,status} = req.body
+        const tasks = await taskModel.create({
+            title,
+            description,
+            user:req.user.id,
+            status
+        })
+        res.redirect('/dashboard')
+    } catch (error) {
+        return res.status(500).json({message:"Internal server error"})
+    }
 
 }
 
 
-export const updateTask = async (req,res)=>{}
+export const updateTask = async (req,res)=>{
+   try {
+     const {id}=req.params
+     const {status}=req.body
+     const statusList = ['Pending','Progress','Completed']
+     if (!statusList.includes(status)) {
+         return res.status(400).json({message:"Invalid status"})
+     }
+     const task = await taskModel.findById(id)
+     if (!task) {
+         return res.status(400).json({message:"Task not found"})
+     }
+     task.status = status
+     await task.save()
+     return res.redirect('/dashboard')
+   } catch (error) {
+    return res.status(500).json({message:"Internal server error"})
+   }
+}
+
+export const deleteTask = async (req,res)=>{
+    try {
+        const {id}=req.params
+        const task = await taskModel.findById(id)
+        if (!task) {
+            return res.status(400).json({message:"Task not found"})
+        }
+        await taskModel.findByIdAndDelete(id)
+        return res.redirect('/dashboard')
+    } catch (error) {
+        return res.status(500).json({message:"Internal server error"})
+    }
+}

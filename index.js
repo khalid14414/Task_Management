@@ -2,6 +2,7 @@ import express from 'express';
 import session from 'express-session';
 import passport from 'passport'
 import path from 'path'
+import methodOverride from 'method-override'
 import { fileURLToPath } from 'url';
 import { connectToDatabase } from './configs/db.js';
 import webpage from './router/webpage.js';
@@ -20,6 +21,7 @@ app.set('view engine','ejs')
 app.set('views','views')
 
 // middleware
+app.use(methodOverride('_method'))
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(express.static(path.join(__dirname,'public')))

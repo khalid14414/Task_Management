@@ -1,5 +1,3 @@
-
-import { userModel } from "../models/user.js"
 import { taskModel } from "../models/task.js"
 
 
@@ -8,6 +6,17 @@ export const registerForm = (req,res,next)=>{
 }
 export const loginForm = (req,res,next)=>{
     res.render('auth/login')
+}
+export const editTask = async(req,res,next)=>{
+    const {id}= req.params
+    const tasks =await taskModel.findById(id)
+    if (!tasks) {
+        return res.status(400).json({message:"Task not found"})
+    }
+    res.render('tasks/edit-task',{
+        tasks:tasks,
+        pageTitle:'Edit Task'
+    })
 }
 export const index = (req,res,next)=>{
     res.render('index')
@@ -20,13 +29,12 @@ export const dashboard = async(req,res,next)=>{
         console.log('User not authenticated');
         return res.status(401).redirect('/login');
     }
-    console.log('Session user ID:', req.sessionID);
 
     const tasks = await taskModel.find({user:req.user._id}).sort({createdAt:-1})
     res.render('tasks/dashboard',
         {
             pageTitle:'Dashboard',user:{name:req.user.userName,
-            avartar:req.user.avatar|| 'img/default.png'},
+            avatar:req.user.avatar},
             tasks:tasks,
         }
     )

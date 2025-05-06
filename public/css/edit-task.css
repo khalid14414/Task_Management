@@ -1,0 +1,47 @@
+.edit-task-card {
+    max-width: 400px;
+    margin: 2rem auto;
+    background-color: var(--white);
+    padding: 2rem;
+    box-shadow: 0 2px 8px var(--shadow);
+    border-radius: 8px;
+  }
+  
+  .edit-task-card h2 {
+    text-align: center;
+    color: var(--primary-color);
+  }
+  
+  .edit-task-card .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .edit-task-card label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+  }
+  
+  .edit-task-card select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+  }
+  
+  .edit-task-card button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+  
+  .edit-task-card button:hover {
+    background-color: var(--primary-hover);
+  }
+  
